@@ -443,7 +443,7 @@ header {
   top: 0; left: 0; right: 0;
   width: 100vw;
   height: 180px;
-  opacity: 0.8;
+  opacity: 0.95;
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -483,11 +483,11 @@ header {
 .testimonial-card p {
   font-size: 1.01rem;
   margin: 0 0 12px 0;
-  color: #000;
+  color: #fff;
 }
 .testimonial-author {
   font-size: 0.95em;
-  color: #000;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -496,55 +496,82 @@ header {
   background: #fff;
   padding: 51px 0 46px;
   text-align: center;
+  border: #000;
+  border-bottom: 100%;
 }
 .how h2 {
-  font-size: 1.18rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
 .how-desc {
-  font-size: 1.03em;
-  color: #2d6fa0;
+  font-size: 1.13em;
+  color: #000;
   margin-bottom: 38px;
 }
 .how-cards {
   display: flex;
   justify-content: center;
-  gap: 45px;
+  gap: 38px;
   margin-top: 24px;
+  flex-wrap: wrap;
 }
 .how-card {
   background: #fafbfc;
-  border-radius: 12px;
-  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
-  padding: 0 0 16px 0;
-  max-width: 330px;
-  min-width: 230px;
+  border-radius: 10px;
+  box-shadow: 0 2px 18px 0 rgba(0,0,0,0.09);
+  min-width: 420px;
+  max-width: 510px;
+  width: 100%;
   text-align: left;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  transition: transform 0.16s, box-shadow 0.16s;
+}
+.how-card:hover {
+  transform: translateY(-4px) scale(1.001);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.15);
 }
 .how-img {
   width: 100%;
-  height: 170px;
-  background: #eee;
-  border-radius: 12px 12px 0 0;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+  border-radius: 18px 18px 0 0;
+}
+.how-card-content {
+  padding: 18px 20px 14px 20px;
 }
 .how-card h3 {
-  font-size: 1.02rem;
-  margin: 15px 0 7px 19px;
+  font-size: 1.05rem;
+  margin: 0 0 7px 0;
   font-weight: 700;
 }
 .how-card p {
-  font-size: 0.97rem;
+  font-size: 0.9rem;
   color: #222;
-  margin: 0 0 0 19px;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .how-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px !important;
+  }
+  .how-card {
+    max-width: 98vw;
+    min-width: 0;
+  }
 }
 
 /* FOOTER */
-footer {
+.footer {
   background: #18120c;
   color: #fff;
-  padding: 37px 0 0 0;
+  padding: 40px 0 0 0;
   font-size: 1rem;
 }
 .footer-top {
@@ -559,48 +586,60 @@ footer {
 }
 .footer-brand {
   min-width: 180px;
-  max-width: 220px;
+  max-width: 240px;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 18px;
 }
 .footer-logo {
   font-weight: bold;
-  font-size: 1.42rem;
+  font-size: 1.5rem;
   color: #fff;
   margin-bottom: 8px;
+  letter-spacing: 2px;
 }
 .footer-socials {
   display: flex;
-  gap: 10px;
+  gap: 7px;
   margin-bottom: 7px;
 }
 .footer-social {
-  width: 23px;
-  height: 23px;
-  background: #eee;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.22em;
+  transition: background 0.18s, color 0.18s;
+  text-decoration: none;
+}
+.footer-social:hover {
+  background: #ff6600;
+  color: #fff;
 }
 .footer-meta {
-  font-size: 0.97em;
+  font-size: 1em;
   color: #aaa;
   margin-bottom: 6px;
   display: flex;
-  gap: 7px;
+  gap: 13px;
+  align-items: center;
 }
 .footer-link {
-  font-size: 0.98em;
+  font-size: 1em;
   color: #ff6600;
   text-decoration: underline;
   margin-top: 8px;
 }
 .footer-links {
   display: flex;
-  gap: 46px;
+  gap: 56px;
   flex-wrap: wrap;
 }
 .footer-links h4 {
-  font-size: 1.07em;
+  font-size: 1.09em;
   margin-bottom: 8px;
   font-weight: 700;
 }
@@ -610,12 +649,12 @@ footer {
   margin: 0;
 }
 .footer-links li {
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 .footer-links a {
   color: #fff;
   text-decoration: none;
-  font-size: 0.97rem;
+  font-size: 0.99rem;
   opacity: 0.86;
   transition: opacity 0.2s;
 }
@@ -627,24 +666,31 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
+  gap: 19px;
 }
 .footer-app-btn {
-  width: 110px;
-  height: 32px;
-  margin-bottom: 8px;
-  background: #eee;
-  border-radius: 7px;
+  width: 180px;
+  border-radius: 7px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.footer-app-btn img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 .footer-legal {
   display: flex;
-  gap: 17px;
+  gap: 19px;
   list-style: none;
   margin: 18px 0 0 0;
   padding: 0;
 }
 .footer-legal li {
-  font-size: 0.95em;
+  font-size: 0.97em;
 }
 .footer-legal a {
   color: #aaa;
@@ -652,23 +698,23 @@ footer {
 }
 .footer-bottom {
   text-align: center;
-  padding: 22px 0 18px;
+  padding: 24px 0 18px;
   color: #bbb;
-  font-size: 0.97em;
+  font-size: 0.99em;
   border-top: 1px solid #2b241d;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 @media (max-width: 1100px) {
   .container { padding: 0 10px; }
-  .why-cards,
-  .how-cards,
-  .testimonials-cards,
   .footer-top,
-  .app-download-cards {
+  .footer-links {
     flex-direction: column;
     align-items: center;
     gap: 28px !important;
   }
-  .footer-links { gap: 18px; }
+  .footer-apps {
+    align-items: center;
+    width: 100%;
+  }
 }

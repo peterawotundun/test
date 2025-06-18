@@ -1,0 +1,674 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: #fff;
+  color: #0d0d0d;
+  box-sizing: border-box;
+}
+
+/* Loader styles */
+#loader {
+  position: fixed;
+  z-index: 9999;
+  top:0; left:0; right:0; bottom:0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+#loader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader-spinner {
+  border: 6px solid #eee;
+  border-top: 6px solid #ff6600;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg);}
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+/* Fade-in for page load */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(.6,.2,.3,1.05), transform 1s cubic-bezier(.6,.2,.3,1.05);
+}
+.fade-in.loaded {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(.6,.2,.3,1.05), transform 1s cubic-bezier(.6,.2,.3,1.05);
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* NAVIGATION */
+header {
+  background: #fff;
+  border-bottom: 2px solid #0d0d0d;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo {
+  width: 44px;
+  height: 44px;
+  background: #eee;
+  border-radius: 8px;
+}
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.brand {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ff6600;
+}
+.brand-sub {
+  font-size: 0.82rem;
+  color: #ff6600;
+}
+.nav-links {
+  display: flex;
+  gap: 48px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li a {
+  color: #222;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  transition: color .2s;
+}
+.nav-links li a.active,
+.nav-links li a:hover {
+  color: #ff6600;
+  font-weight: bold;
+}
+.contact-btn {
+  background: #ff6600;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  margin-left: 16px;
+  transition: background .2s;
+}
+.contact-btn:hover { background: #e65000; }
+
+
+/* HERO - FULL VIEWPORT BG & FROSTED CARD */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 560px;
+  background: #222;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-bg-img {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 1;
+  pointer-events: none;
+  display: block;
+  min-width: 100vw;
+  min-height: 100vh;
+  max-width: none;
+  max-height: none;
+}
+
+.hero-center-content {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  margin-left: 10%;
+  align-items: center;
+}
+.hero-card {
+  min-height: 300px; /* comment out or reduce if present */
+}
+/* Frosted glass hero card */
+.hero-card.hero-card-elevated,
+.hero-card {
+  width: 470px;
+  max-width: 96vw;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 4px 40px 0 rgba(0,0,0,0.15), 0 2px 8px 0 rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 22px;
+  border: 1.5px solid #eaeaea;
+  backdrop-filter: blur(5px) saturate(1.4);
+  -webkit-backdrop-filter: blur(5px) saturate(1.4);
+  /* blurred glass effect */
+}
+
+/* HERO TABS */
+.hero-tabs {
+  display: flex;
+  width: 100%;
+  border-radius: 18px 18px 0 0;
+  background: #fff;
+  overflow: hidden;
+  border-bottom: 1.5px solid #e0e0e0;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+}
+
+.hero-tab {
+  flex: 1;
+  text-align: center;
+  padding: 18px 0 0 0;
+  font-size: 1.08em;
+  font-weight: 500;
+  color: #222;
+  cursor: pointer;
+  position: relative;
+  transition: color .18s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  height: 68px;
+}
+.tab-icon {
+  font-size: 1.5em;
+  display: block;
+  margin-bottom: 7px;
+}
+.hero-tab.active {
+  color: #111;
+  font-weight: 600;
+}
+.tab-underline {
+  width: 50%;
+  height: 3px;
+  background: #111;
+  border-radius: 2px;
+  position: absolute;
+  left: 25%;
+  bottom: 0px;
+  display: block;
+  content: '';
+}
+.hero-card-content {
+  padding: 22px 28px 8px 28px;
+  text-align: center;
+}
+.hero-card-content h1 {
+  font-size: 2.1em;
+  font-weight: 700;
+  line-height: 1.13;
+  margin: 0 0 14px 0;
+  letter-spacing: -1px;
+}
+.hero-desc {
+  font-size: 1.08em;
+  color: #232323;
+  margin: 0 0 25px 0;
+  font-weight: 400;
+}
+.get-app-btn {
+  background: #111;
+  color: #fff;
+  font-size: 1.09em;
+  font-weight: 500;
+  border: none;
+  border-radius: 7px;
+  padding: 13px 36px;
+  margin: 0 0 20px 0;
+  cursor: pointer;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
+  transition: background 0.2s;
+}
+.get-app-btn:hover {
+  background: #222;
+}
+.learn-link {
+  margin: 12px 0 0 0;
+  color: #111;
+  font-size: 1.08em;
+  text-decoration: underline;
+  font-weight: 500;
+  display: inline-block;
+  transition: color .14s;
+}
+.learn-link:hover {
+  color: #080808;
+}
+
+/* Responsive hero card and hero section */
+@media (max-width: 900px) {
+  .hero-card.hero-card-elevated,
+  .hero-card {
+    width: 98vw;
+    min-width: 0;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  .hero-center-content {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0;
+  }
+  .hero {
+    min-height: 420px;
+    height: 100vh;
+  }
+  .hero-bg-img {
+    min-height: 100vh;
+    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
+/* ...rest of your styles remain unchanged... */
+
+/* APP DOWNLOAD */
+.app-download {
+  background: #ff6600;
+  color: #fff;
+  padding: 42px 0 55px 0;
+  text-align: center;
+}
+.app-download-title {
+  font-size: 1.16rem;
+  font-weight: 500;
+  margin-bottom: 39px;
+  text-align: left;
+  margin-left: 100px;
+}
+.app-download-cards {
+  display: flex;
+  justify-content: center;
+  gap: 38px;
+}
+.app-download-card {
+  background: #fff;
+  color: #222;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.09);
+  padding: 22px 33px;
+  min-width: 330px;
+  font-size: 1.06rem;
+  cursor: pointer;
+  transition: transform .18s;
+  font-weight: 500;
+}
+.app-download-card:hover { transform: scale(1.03);}
+.app-download-card-logo {
+  width: 50px;
+  height: 50px;
+  background: #eee;
+  border-radius: 7px;
+  margin-right: 6px;
+}
+.app-download-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f6f6f6;
+  margin-left: 16px;
+}
+
+/* WHY */
+.why {
+  background: #fff;
+  padding: 46px 0 36px;
+  text-align: center;
+}
+.why h2 {
+  font-size: 1.3rem;
+  margin-bottom: 37px;
+  font-weight: 700;
+}
+.why-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 44px 60px;
+  margin-bottom: 30px;
+}
+.why-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  max-width: 500px;
+  text-align: left;
+}
+.why-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #eee;
+  margin-top: 5px;
+}
+.why-card h3 {
+  font-size: 1.04em;
+  margin: 0 0 5px 0;
+  font-weight: 700;
+}
+.why-card p {
+  font-size: 0.99em;
+  color: #222;
+  margin: 0;
+}
+.why-availability {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 22px;
+  text-align: left;
+}
+.why-availability-icon {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: #eee;
+  margin-top: 5px;
+}
+.why-availability-title {
+  font-weight: bold;
+  font-size: 1.02em;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  background: #eaf4fc;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+.testimonials-bg {
+  background: #bbb;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  width: 100vw;
+  height: 180px;
+  opacity: 0.8;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+.testimonials-inner {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 32px;
+}
+.testimonials h2 {
+  text-align: center;
+  padding-top: 24px;
+  font-size: 1.23rem;
+}
+.testimonials-cards {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 32px 0 38px 0;
+}
+.testimonial-card {
+  border-radius: 13px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 26px 26px 14px 18px;
+  max-width: 410px;
+  min-width: 260px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+.testimonial-card p {
+  font-size: 1.01rem;
+  margin: 0 0 12px 0;
+  color: #000;
+}
+.testimonial-author {
+  font-size: 0.95em;
+  color: #000;
+  font-weight: 700;
+}
+
+/* HOW IT WORKS */
+.how {
+  background: #fff;
+  padding: 51px 0 46px;
+  text-align: center;
+}
+.how h2 {
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.how-desc {
+  font-size: 1.03em;
+  color: #2d6fa0;
+  margin-bottom: 38px;
+}
+.how-cards {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  margin-top: 24px;
+}
+.how-card {
+  background: #fafbfc;
+  border-radius: 12px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+  padding: 0 0 16px 0;
+  max-width: 330px;
+  min-width: 230px;
+  text-align: left;
+  overflow: hidden;
+}
+.how-img {
+  width: 100%;
+  height: 170px;
+  background: #eee;
+  border-radius: 12px 12px 0 0;
+}
+.how-card h3 {
+  font-size: 1.02rem;
+  margin: 15px 0 7px 19px;
+  font-weight: 700;
+}
+.how-card p {
+  font-size: 0.97rem;
+  color: #222;
+  margin: 0 0 0 19px;
+}
+
+/* FOOTER */
+footer {
+  background: #18120c;
+  color: #fff;
+  padding: 37px 0 0 0;
+  font-size: 1rem;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-bottom: 22px;
+}
+.footer-brand {
+  min-width: 180px;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.footer-logo {
+  font-weight: bold;
+  font-size: 1.42rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+.footer-social {
+  width: 23px;
+  height: 23px;
+  background: #eee;
+  border-radius: 50%;
+}
+.footer-meta {
+  font-size: 0.97em;
+  color: #aaa;
+  margin-bottom: 6px;
+  display: flex;
+  gap: 7px;
+}
+.footer-link {
+  font-size: 0.98em;
+  color: #ff6600;
+  text-decoration: underline;
+  margin-top: 8px;
+}
+.footer-links {
+  display: flex;
+  gap: 46px;
+  flex-wrap: wrap;
+}
+.footer-links h4 {
+  font-size: 1.07em;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 6px;
+}
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.97rem;
+  opacity: 0.86;
+  transition: opacity 0.2s;
+}
+.footer-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+.footer-apps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.footer-app-btn {
+  width: 110px;
+  height: 32px;
+  margin-bottom: 8px;
+  background: #eee;
+  border-radius: 7px;
+}
+.footer-legal {
+  display: flex;
+  gap: 17px;
+  list-style: none;
+  margin: 18px 0 0 0;
+  padding: 0;
+}
+.footer-legal li {
+  font-size: 0.95em;
+}
+.footer-legal a {
+  color: #aaa;
+  text-decoration: none;
+}
+.footer-bottom {
+  text-align: center;
+  padding: 22px 0 18px;
+  color: #bbb;
+  font-size: 0.97em;
+  border-top: 1px solid #2b241d;
+  margin-top: 16px;
+}
+
+@media (max-width: 1100px) {
+  .container { padding: 0 10px; }
+  .why-cards,
+  .how-cards,
+  .testimonials-cards,
+  .footer-top,
+  .app-download-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px !important;
+  }
+  .footer-links { gap: 18px; }
+}
